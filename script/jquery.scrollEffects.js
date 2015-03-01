@@ -9,6 +9,7 @@
 $.fn.scrollEffects = $(function() {
 	var scrolled = false;
 	var screenPosition = 0;
+	var checkPage = 1;
 
 
 	$(window).scroll(function() {
@@ -42,9 +43,22 @@ $.fn.scrollEffects = $(function() {
 		var windowWidth = $(window).width();
 		if (direction == "left"){
 			screenPosition -= windowWidth;
+			$(".panelWrapper").animate({right: screenPosition} , 2000)
+			checkPage -= 1;
 		} else {
 			screenPosition += windowWidth;
+			$(".panelWrapper").animate({right: screenPosition} , 2000)
+			checkPage += 1;
 		}
+		if (checkPage == 3) {
+			$('.scroll-effect-button.next').hide();
+		} else if (checkPage == 1) {
+			$('.scroll-effect-button.prev').hide();
+		} else {
+			$('.scroll-effect-button.next').show();
+			$('.scroll-effect-button.prev').show();
+		}
+		console.log(checkPage);
 	};
 	
 	$('.scroll-effect-button.next').on('click', function() {

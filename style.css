@@ -43,6 +43,10 @@ h2 {
 	float:left;
 	top:150%;
 }
+.scroll-effect-button.prev {
+	display:none;
+}
+
 .panelWrapper {
 	position: relative;
 	display: inline;
@@ -50,6 +54,7 @@ h2 {
 	margin: 0;
 	padding: 0;
 }
+
 .panelContainer1 {
 	width: 32%;
 	display: inline-block;
