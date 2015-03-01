@@ -41,15 +41,10 @@ $.fn.scrollEffects = $(function() {
 	function scrolling(direction) {
 		var windowWidth = $(window).width();
 		if (direction == "left"){
-			console.log(windowWidth)
-			screenPosition += windowWidth;
-			$(".panelWrapper").animate({left: screenPosition} , 2000)
+			screenPosition -= windowWidth;
 		} else {
 			screenPosition += windowWidth;
-			$(".panelWrapper").animate({right: screenPosition} , 2000)
-			console.log(windowWidth);
 		}
-
 	};
 	
 	$('.scroll-effect-button.next').on('click', function() {
