@@ -4,15 +4,22 @@
 	<meta charset="UTF-8">
 	<title>jQuery Scroll plugin</title>
 	<link rel="stylesheet" href="style.css">
-
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Bree+Serif|Open+Sans:300,400,700|' rel='stylesheet' type='text/css'>
 
 </head>
 <body>
 	<section class="panel1">
 		<div class="panel1text">
-			<h2>Scroll Effects</h2>
-			<p class="howToUse">How this plugin works</p>
-			<p class="detail"></p>
+			<h1>Scroll Effects</h2>
+			<p class="description">Here is a plugin with various scroll effects.</p>
+			<p class="howToUse">Section One</p>
+				<p class="details">Scroll down slightly and the rest of the page will smooth scroll down to the next section.</p>
+			<p class="howToUse">Section Two</p>
+				<p class="details">The next section allows you to side scroll between slides.</p>
+			<p class="howToUse">Section Three</p>
+				<p class="details">The next section has image animations on load.</p>
+			<div class="bounce"><i class="fa fa-chevron-down"></i></div>
 		</div>
 	</section>
 
@@ -21,116 +28,132 @@
 	<section class="panel2" id="panel2">
 		<div class="arrows">
 			<a href="#panelShiftPrev">
-				<input type="button" class="scroll-effect-button prev" value="Prev" id="left">
+				<i class="fa fa-chevron-left scroll-effect-button prev" id="left"></i>
 			</a>
 			<a href="#panelShiftNext">
-				<input type="button" class="scroll-effect-button next" value="Next" id="right">
+				<i class="fa fa-chevron-right scroll-effect-button next" id="right"></i>
 			</a>
 		</div>
 
 		<div class="panelWrapper">
 			<div class="panelContainer1">
-				<p>this is the first panel</p>
+				<div class="codeOne">
+					<p class="codeTitle">The initial setup...</p>
+					<p class="codeDetails">Link the "jquery.scrollEffect.js" file to your HTML file.</p>
+					<p class="codeDetails">The "style.css" file contains the styles for this current page however changes may be required to customize the effects to fit your needs.</p>
+					<p class="codeDetails">See specific code on the following slides to see how to customize the styles to your needs.</p>
+				</div>
 			</div>
 
 			<div class="panelContainer2">
-				<p>this is the second panel</p>
+				<div class="codeTwo">
+					<p class="codeTitle">Smooth scroll</p>
+					<pre class="codeSnippet">
+						<li>$(window).scroll(function() {</li>
+							<li>  var pixeltracker = $(window).scrollTop();</li>
+							<li>  if (pixeltracker > <span class="customizeValue1">10</span> && !scrolled) {</li>
+								<li>    scrolled = true;</li>
+								<li>    $('body, html').animate({</li>
+									<li>      'scrollTop': $('<span class="customizeValue2">#panel2</span>').offset().top}, 1000)</li>
+							<li>  } else if(pixeltracker <= <span class="customizeValue1">10</span>) {</li>
+								<li>  scrolled = false;}</li>
+							<li>this.scrollLeft=0;</li>
+							<li>});</li>
+					</pre>
+					<p class="codeDetails">The example above specifies that if the user scrolls to <span class="customizeValue1">10</span> pixels in the window, the smooth scroll effect will trigger. To customize, replace the number in red above in the code with the pixel number you would like.</p>
+					<p class="codeDetails">Replace the code in yellow above with the id section that you would like the smooth scroll to scroll to when triggered. In this example, once smooth scroll is triggered, it will scroll to the section that has the id of <span class="customizeValue2">panel2</span>.</p>
+				</div>
 			</div>
 
 			<div class="panelContainer3">
-				<p>this is the third panel</p>
+				<div class="codeThree">
+					<p class="codeTitle">Side scroll slides</p>
+					<pre class="codeSnippet">
+						<li>function scrolling(direction) {</li>
+						<li>    var windowWidth = $(window).width();</li>
+						<li>    if (direction == "left"){</li>
+						<li>    screenPosition -= windowWidth;</li>
+					<li>    $(".panelWrapper").animate({right: screenPosition} , 2000)</li>
+						<li>    checkPage -= <span class="customizeValue1">1</span>;} else {</li>
+						<li>    screenPosition += windowWidth;</li>
+					<li>    $(".panelWrapper").animate({right: screenPosition} , 2000)</li>
+						<li>    checkPage += <span class="customizeValue1">1</span>;}</li>
+						<li>if (checkPage == <span class="customizeValue1">4</span>) {</li>
+					<li>    $('.scroll-effect-button.next').hide();</li>
+						<li>} else if (checkPage == <span class="customizeValue1">1</span>) {</li>
+					<li>    $('.scroll-effect-button.prev').hide();</li>
+					<li>} else {</li>
+					<li>    $('.scroll-effect-button.next').show();</li>
+					<li>    $('.scroll-effect-button.prev').show();}};</li>	
+				<li>$('.scroll-effect-button.next').on('click', function() {scrolling("right");});</li>
+				<li>$('.scroll-effect-button.prev').on('click', function() {scrolling ("left");});</li>
+					</pre>
+					<p class="codeDetails">The code above will allow you to loop your slides and navigate with the arrows on each slide. The <span class="customizeValue1">1</span> in the code above tells the browser to start counting the pages at 1 while the 4 tells the browser that there is a max of <span class="customizeValue1">4</span> slides. To have more pages, this can be done by adjusting those numbers.</p>
+					<p class="codeDetails">If you would like to have more than 4 slides, the code within the .css file will need to be adjusted slightly. Please just ensure that each <span class="customizeValue2">.panelContainer</span> section is divisible by 100%. Lastly, the total width of the section <span class="customizeValue2">.panel2</span> will need to be the total number of slides times 100%.</p>
+				</div>
+			</div>
+			<div class="panelContainer4">
+				<div class="codeFour">
+					<p class="codeTitle">Image Animations</p>
+					<pre class="codeSnippet">
+						<li>$(window).scroll(function(){</li>
+							<li>    var scrolltracker = $(window).scrollTop();</li>
+							<li>    if(scrolltracker >= <span class="customizeValue1">1500</span>) {</li>
+							<li>      $('<span class="customizeValue2">.images2</span>').addClass('animated <span class="customizeValue2">bounceIn</span>')</li>
+							<li>    } else if (scrolltracker >= <span class="customizeValue1">1000</span>){</li>
+							<li>      $('<span class="customizeValue2">.images1</span>').addClass('animated <span class="customizeValue2">bounceIn</span>');</li>
+							<li>    }</li>
+							<li>});</li>
+					</pre>
+					<p class="codeDetails">The code snippet above allows you to animate the image transitions when the window is scrolled to a specific pixel number. Like the first snippet of code for smooth scroll, the code above will trigger when the window is scrolled to <span class="customizeValue1">1000</span> and <span class="customizeValue1">1500</span> pixels. By changing these numbers in the code, the image animations will trigger when that user has scrolled to that pixel number in the window.</p>
+					
+					<p class="codeDetails">The <span class="customizeValue2">bounceIn</span> animation is linked to the .css file that contains the class of <span class="customizeValue2">bounceIn</span>. This transition effect can be changed depending on which css animation effect you would like to include on your page.
+
+					<p class="codeDetails">The images on this example are also separated into 2 classes, <span class="customizeValue2">.images1</span> and <span class="customizeValue2">.images2</span>. When the window is scrolled to <span class="customizeValue1">1000</span> pixels in the window, the images with the class of <span class="customizeValue2">.images1</span> will be triggered with the animation class of <span class="customizeValue2">bounceIn</span>.</p>
+					<p class="codeDetails">Similar to the images with the class of <span class="customizeValue2">.images1</span>, the images with the class of <span class="customizeValue2">.images2</span> will be triggered when the window is scrolled to <span class="customizeValue1">1500</span> pixels and this will then animate the images to <span class="customizeValue2">bounceIn</span>.</p>
+				</div>
 			</div>
 
 		</div>
-
-		<!-- <div class="pageOne">
-			<div class="arrows">
-				<img src="images/arrowLeft2.svg" class="arrow left" id="left" alt="arrow left">
-			    <img src="images/arrowRight1.svg" class="arrow right" id="right" alt="arrow right">
-				<div class="panel-container">
-					<p>panel one</p>
-				</div>
-			</div> -->
-		<!-- </div> -->
-
-		<!-- <div class="pageTwo"> -->
-			<!-- <div class="arrows">
-				<img src="images/arrowLeft2.svg" class="arrow left" id="left" alt="arrow left">
-			    <img src="images/arrowRight1.svg" class="arrow right" id="right" alt="arrow right">
-				<div class="panel-container">
-					<p>panel two</p>
-				</div>
-			</div> -->
-		<!-- </div> -->
-
-
-
-
-
-		<!-- <div class="panel-container">
-			<div class="arrows">
-				<img src="images/arrowLeft2.svg" class="arrow left" id="left" alt="arrow left">
-			    <img src="images/arrowRight1.svg" class="arrow right" id="right" alt="arrow right">
-			</div> -->
-			<!-- <div class="panel2a sidePanels"> -->
-				<!-- <p>First side panel</p> -->
-			<!-- </div> -->
-		<!-- </div>
-
-		<div class="panel-container">
-			<div class="arrows">
-				<img src="images/arrowLeft2.svg" class="arrow left" id="left" alt="arrow left">
-			    <img src="images/arrowRight1.svg" class="arrow right" id="right" alt="arrow right">
-			</div> -->
-			<!-- <div class="panel2b sidePanels"> -->
-				<!-- <p>second panel</p> -->
-			<!-- </div> -->
-		<!-- </div>
-
-		<div class="panel-container">
-			<div class="arrows">
-				<img src="images/arrowLeft2.svg" class="arrow left" id="left" alt="arrow left">
-			    <img src="images/arrowRight1.svg" class="arrow right" id="right" alt="arrow right">
-			</div> --><!-- <div class="panel2c sidePanels"> -->
-				<!-- <p>third side panel</p> -->
-			<!-- </div> -->
-		<!-- </div> -->
-			
-
-
 	</section>
 	
 	<section class="panel3" id="panel3">
+		<h2>Image transition effects</h3>
 		<div class="topRowImage" id="image1">
 			<div class="imageBox1">
-				<img src="images/kitchen.jpg" alt="" class="image1 images1">
+				<img src="http://lorempixel.com/250/250/?=1" alt="" class="image1 images1">
 			</div>
 
 			<div class="imageBox2">
-				<img src="images/kitchen.jpg" alt="" class="image2 images1">
+				<img src="http://lorempixel.com/250/250/?=2" alt="" class="image2 images1">
 			</div>
 
 			<div class="imageBox3">
-				<img src="images/kitchen.jpg" alt="" class="image3 images1">
+				<img src="http://lorempixel.com/250/250/?=3" alt="" class="image3 images1">
 			</div>
 
 			<div class="imageBox4">
-				<img src="images/kitchen.jpg" alt="" class="image4 images2">
+				<img src="http://lorempixel.com/250/250/?=4" alt="" class="image4 images2">
 			</div>
 
 			<div class="imageBox5">
-				<img src="images/kitchen.jpg" alt="" class="image5 images2">
+				<img src="http://lorempixel.com/250/250/?=5" alt="" class="image5 images2">
 			</div>
 
 			<div class="imageBox6">
-				<img src="images/kitchen.jpg" alt="" class="image6 images2">
+				<img src="http://lorempixel.com/250/250/?=6" alt="" class="image6 images2">
 			</div>
 		</div>
 
 	</section>
 
 	<section class="panel4">
-		
+		<div class="footer">
+			<a href="http://www.github.com/" class="github">View on GitHub <i class="fa fa-code-fork"></i>
+			</a>
+
+			<p class="text" id="text">Made with love <i class="fa fa-heart"></i> Hannah Wong</p>
+		</div>
 	</section>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
