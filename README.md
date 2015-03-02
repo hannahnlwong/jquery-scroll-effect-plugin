@@ -10,17 +10,20 @@ The "style.css" file contains the styles for this current page however changes m
 See specific code on the following slides to see how to customize the styles to your needs.
 
 Smooth Scroll Effect
-						
+
+```						
 $(window).scroll(function() {
-	var pixeltracker = $(window).scrollTop();
-	if (pixeltracker > 10 && !scrolled) {
-		scrolled = true;
-	$('body, html').animate({
-		'scrollTop': $('#panel2').offset().top}, 1000)
-	} else if (pixeltracker <= 10) {
-		scrolled = false;}
-	this.scrollLeft=0;
+    var pixeltracker = $(window).scrollTop();
+    if (pixeltracker > 10 && !scrolled) {
+        scrolled = true;
+    $('body, html').animate({
+        'scrollTop': $('#panel2').offset().top
+        }, 1000)
+    } else if (pixeltracker <= 10) {
+        scrolled = false;}
+    this.scrollLeft=0;
 });
+```
 
 The example above specifies that if the user scrolls to 10 pixels in the window, the smooth scroll effect will trigger. To customize, replace the number in red above in the code with the pixel number you would like.
 
@@ -28,26 +31,31 @@ Replace the code in yellow above with the id section that you would like the smo
 
 Side Scroll Slides Effect
 
+```
 function scrolling(direction) {
     var windowWidth = $(window).width();
     if (direction == "left"){
-    screenPosition -= windowWidth;
-    $(".panelWrapper").animate({right: screenPosition} , 2000)
-    checkPage -= 1;} else {
+        screenPosition -= windowWidth;
+    $(".panelWrapper").animate({right: screenPosition}
+    , 2000)
+        checkPage -= 1;} else {
     screenPosition += windowWidth;
-    $(".panelWrapper").animate({right: screenPosition} , 2000)
-    checkPage += 1;}
-if (checkPage == 4) {
-    $('.scroll-effect-button.next').hide();
-} else if (checkPage == 1) {
-    $('.scroll-effect-button.prev').hide();
-} else {
-    $('.scroll-effect-button.next').show();
-    $('.scroll-effect-button.prev').show();}};
+    $(".panelWrapper").animate({right: screenPosition}
+    , 2000)
+        checkPage += 1;}
+    if (checkPage == 4) {
+        $('.scroll-effect-button.next').hide();
+    } else if (checkPage == 1) {
+            $('.scroll-effect-button.prev').hide();
+    } else {
+        $('.scroll-effect-button.next').show();
+            $('.scroll-effect-button.prev').show();}};
 $('.scroll-effect-button.next').on('click', function() {
-	scrolling("right");});
+    scrolling("right");});
 $('.scroll-effect-button.prev').on('click', function() {
-	scrolling ("left");});
+    scrolling ("left");
+});
+```
 
 The code above will allow you to loop your slides and navigate with the arrows on each slide. The 1 in the code above tells the browser to start counting the pages at 1 while the 4 tells the browser that there is a max of 4 slides. To have more pages, this can be done by adjusting those numbers.
 
@@ -55,6 +63,7 @@ If you would like to have more than 4 slides, the code within the .css file will
 
 Image Animations Effect
 
+```
 $(window).scroll(function(){
     var scrolltracker = $(window).scrollTop();
     if(scrolltracker >= 1500) {
@@ -63,6 +72,7 @@ $(window).scroll(function(){
       $('.images1').addClass('animated bounceIn');
     }
 });
+```
 
 The code snippet above allows you to animate the image transitions when the window is scrolled to a specific pixel number. Like the first snippet of code for smooth scroll, the code above will trigger when the window is scrolled to 1000 and 1500 pixels. By changing these numbers in the code, the image animations will trigger when that user has scrolled to that pixel number in the window.
 
